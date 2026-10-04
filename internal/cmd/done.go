@@ -224,6 +224,9 @@ func donePolecatActorIdentity(actor string) (string, string, error) {
 	}
 	parts := strings.Split(actor, "/")
 	if len(parts) != 3 || parts[0] == "" || parts[1] != "polecats" || parts[2] == "" {
+		if actor == "dog" || strings.HasPrefix(actor, "deacon/dogs/") {
+			return "", "", fmt.Errorf("gt done is for polecats only (BD_ACTOR=%s); dogs use `gt dog done`", actor)
+		}
 		return "", "", fmt.Errorf("gt done is for polecats only (BD_ACTOR=%s)", actor)
 	}
 	if err := doneValidateIdentitySegment("BD_ACTOR rig", parts[0]); err != nil {

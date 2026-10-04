@@ -2,6 +2,8 @@
 
 Signal that your work is complete and ready for the merge queue.
 
+**Dogs:** do not use this command. Run `gt dog done` instead.
+
 Arguments: $ARGUMENTS
 
 ## Pre-flight Checks

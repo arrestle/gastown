@@ -100,12 +100,14 @@ func AgentEnv(cfg AgentEnvConfig) map[string]string {
 	switch cfg.Role {
 	case constants.RoleMayor:
 		env["GT_ROLE"] = constants.RoleMayor
-		env["BD_ACTOR"] = constants.RoleMayor
+		// Trailing slash matches the canonical assignee for town-level agents
+		// (canonicalAssigneeAddress), so bd ownership checks pass on close.
+		env["BD_ACTOR"] = constants.RoleMayor + "/"
 		env["GIT_AUTHOR_NAME"] = constants.RoleMayor
 
 	case constants.RoleDeacon:
 		env["GT_ROLE"] = constants.RoleDeacon
-		env["BD_ACTOR"] = constants.RoleDeacon
+		env["BD_ACTOR"] = constants.RoleDeacon + "/"
 		env["GIT_AUTHOR_NAME"] = constants.RoleDeacon
 
 	case "boot":
