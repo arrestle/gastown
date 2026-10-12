@@ -1713,3 +1713,18 @@ func TestAgentEnv_EffortLevel(t *testing.T) {
 		}
 	})
 }
+
+func TestBDActorForRole(t *testing.T) {
+	t.Parallel()
+	for role, want := range map[string]string{
+		"mayor":               "mayor/",
+		"deacon":              "deacon/",
+		"gastown/witness":     "gastown/witness",
+		"gastown/polecats/nx": "gastown/polecats/nx",
+		"gastown/crew/jane":   "gastown/crew/jane",
+	} {
+		if got := BDActorForRole(role); got != want {
+			t.Errorf("BDActorForRole(%q) = %q, want %q", role, got, want)
+		}
+	}
+}
